@@ -1,3 +1,13 @@
+trigger:
+- main
+
+pool:
+  name: 'Default'
+
+variables:
+  solution: '**/*.sln'
+
+steps:
 - task: Npm@1
   inputs:
     command: 'install'
@@ -6,7 +16,7 @@
     command: 'restore'
 - task: VSBuild@1
   inputs:
-    solution: '**\*.sln'
+    solution: '$(solution)'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
